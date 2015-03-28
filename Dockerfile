@@ -1,42 +1,26 @@
-# DOCKER-VERSION 1.4.1
-# METEOR-VERSION 1.0.3.1
-FROM stackbrew/ubuntu:trusty
+FROM ubuntu
 
-RUN apt-get update
+# clean and update for a fresh install
+RUN apt-get clean && apt-get update
 
-### For latest Node
+# build essentials
+RUN apt-get install -y build-essential g++ git curl
+
+# cairo + image libs
+RUN apt-get install -y libc-dev libcairo2-dev libpng-dev libglib2.0-dev libjpeg8-dev libjpeg-turbo8-dev libpango1.0-dev libglib2.0-dev libfreetype6-dev libxft-dev libfontconfig1-dev libgif-dev
+
+# latest Node binaries
 RUN apt-get install -y software-properties-common
-RUN add-apt-repository -y ppa:chris-lea/node.js
-RUN apt-get update
-RUN apt-get install -y build-essential nodejs
-###
+RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
+RUN apt-get install -y nodejs
 
-### For standard Ubuntu Node
-#RUN apt-get install -y build-essential nodejs npm
-#RUN ln -s /usr/bin/nodejs /usr/bin/node
-###
+# graphicsmagick + imagemagick
+RUN apt-get install -y graphicsmagick imagemagick
 
-# Install git, curl, python, and phantomjs
-RUN apt-get install -y git curl python phantomjs
+# Install meteor
+RUN curl https://install.meteor.com/ | sh
+RUN mkdir -p /src
 
-# Make sure we have a directory for the application
-RUN mkdir -p /var/www
-RUN chown -R www-data:www-data /var/www
+RUN npm install -g geoip-lite@1.1.3
 
-# Install fibers -- this doesn't seem to do any good, for some reason
-RUN npm install -g fibers
-
-# Install Meteor
-RUN curl https://install.meteor.com/ |sh
-
-# Install entrypoint
-ADD entrypoint.sh /usr/bin/entrypoint.sh
-RUN chmod +x /usr/bin/entrypoint.sh
-
-# Add known_hosts file
-ADD known_hosts /root/.ssh/known_hosts
-
-EXPOSE 80
-
-ENTRYPOINT ["/usr/bin/entrypoint.sh"]
-CMD []
+ENTRYPOINT []
