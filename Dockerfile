@@ -4,7 +4,7 @@ FROM ubuntu
 RUN apt-get clean && apt-get update
 
 # build essentials
-RUN apt-get install -y build-essential g++ git curl wget unzip phantomjs
+RUN apt-get install -y build-essential g++ git curl wget unzip 
 
 # cairo + image libs
 RUN apt-get install -y libc-dev libcairo2-dev libpng-dev libglib2.0-dev libjpeg8-dev libjpeg-turbo8-dev libpango1.0-dev libglib2.0-dev libfreetype6-dev libxft-dev libfontconfig1-dev libgif-dev
@@ -29,5 +29,6 @@ RUN wget http://flowtype.org/downloads/flow-linux64-latest.zip
 RUN unzip flow-linux64-latest.zip -d /tmp/flow
 RUN mv /tmp/flow/flow /flow
 RUN chmod +x flow
-
+## phantomjs
+RUN npm install -g phantomjs
 ENTRYPOINT []
