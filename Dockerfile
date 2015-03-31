@@ -23,7 +23,7 @@ RUN mkdir -p /src
 
 ## Test tools
 #jest
-RUN npm install jest-cli --save-dev
+RUN npm install jest-cli react react-tools --save-dev
 #flow
 RUN wget http://flowtype.org/downloads/flow-linux64-latest.zip
 RUN unzip flow-linux64-latest.zip -d /tmp/flow
