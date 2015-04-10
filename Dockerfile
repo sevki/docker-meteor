@@ -25,9 +25,9 @@ RUN mkdir -p /src
 #jest
 RUN npm install -g jest-cli react react-tools jsxhint
 ## joker
-RUN wget https://github.com/sevki/joker/releases/download/v0.0.2/joker-v0.0.2-linux-x64
-RUN chmod +x joker-v0.0.2-linux-x64
-RUN mv joker-v0.0.2-linux-x64 /bin/joker
+RUN wget https://github.com/sevki/joker/releases/download/v0.0.3/joker
+RUN chmod +x joker
+RUN mv joker /bin/joker
 #flow
 RUN wget http://flowtype.org/downloads/flow-linux64-latest.zip
 RUN unzip flow-linux64-latest.zip -d /tmp/flow
