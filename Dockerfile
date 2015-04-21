@@ -25,7 +25,7 @@ RUN mkdir -p /src
 #jest
 RUN npm install -g jest-cli react react-tools jsxhint
 ## joker
-RUN wget https://github.com/sevki/joker/releases/download/v0.0.4/joker
+RUN wget https://github.com/sevki/joker/releases/download/v0.0.5/joker
 RUN chmod +x joker
 RUN mv joker /bin/joker
 #flow
